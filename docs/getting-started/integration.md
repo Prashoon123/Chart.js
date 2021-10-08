@@ -7,15 +7,15 @@ Chart.js can be integrated with plain JavaScript or with different module loader
 ```html
 <script src="path/to/chartjs/dist/chart.js"></script>
 <script>
-    var myChart = new Chart(ctx, {...});
+  const myChart = new Chart(ctx, {...});
 </script>
 ```
 
 ## Common JS
 
 ```javascript
-var Chart = require('chart.js');
-var myChart = new Chart(ctx, {...});
+const Chart = require('chart.js');
+const myChart = new Chart(ctx, {...});
 ```
 
 ## Bundlers (Webpack, Rollup, etc.)
@@ -80,20 +80,20 @@ Chart.register(
   SubTitle
 );
 
-var myChart = new Chart(ctx, {...});
+const myChart = new Chart(ctx, {...});
 ```
 
 A short registration format is also available to quickly register everything.
 
 ```javascript
-import { Chart, registerables } from 'chart.js';
+import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 ```
 
 And finally there is an separate path to do just the above for you, in one line:
 
 ```javascript
-import Chart from 'chart.js/auto';
+import Chart from "chart.js/auto";
 ```
 
 ### Helper functions
@@ -103,14 +103,14 @@ If you want to use the helper functions, you will need to import these separatel
 Example of [Converting Events to Data Values](../configuration/interactions.md#converting-events-to-data-values) using bundlers.
 
 ```javascript
-import Chart from 'chart.js/auto';
-import { getRelativePosition } from 'chart.js/helpers';
+import Chart from "chart.js/auto";
+import { getRelativePosition } from "chart.js/helpers";
 
 const chart = new Chart(ctx, {
-  type: 'line',
+  type: "line",
   data: data,
   options: {
-    onClick: (e) => {
+    onClick: e => {
       const canvasPosition = getRelativePosition(e, chart);
 
       // Substitute the appropriate scale IDs
@@ -127,7 +127,7 @@ const chart = new Chart(ctx, {
 
 ```javascript
 require(['path/to/chartjs/dist/chart.min.js'], function(Chart){
-    var myChart = new Chart(ctx, {...});
+    const myChart = new Chart(ctx, {...});
 });
 ```
 

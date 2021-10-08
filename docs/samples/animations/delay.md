@@ -43,7 +43,7 @@ const data = {
 // </block:setup>
 
 // <block:config:0>
-var delayed;
+const delayed;
 const config = {
   type: 'bar',
   data: data,

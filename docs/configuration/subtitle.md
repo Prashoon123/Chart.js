@@ -13,16 +13,16 @@ Excactly the same configuration options with [title](./title.md) are available f
 The example below would enable a title of 'Custom Chart Subtitle' on the chart that is created.
 
 ```javascript
-var chart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: {
-        plugins: {
-            subtitle: {
-                display: true,
-                text: 'Custom Chart Subtitle'
-            }
-        }
+const chart = new Chart(ctx, {
+  type: "line",
+  data: data,
+  options: {
+    plugins: {
+      subtitle: {
+        display: true,
+        text: "Custom Chart Subtitle"
+      }
     }
+  }
 });
 ```

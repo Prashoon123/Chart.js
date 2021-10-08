@@ -4,59 +4,63 @@
 // <block:actions:2>
 const actions = [
   {
-    name: 'Stacked: true',
-    handler: (chart) => {
+    name: "Stacked: true",
+    handler: chart => {
       chart.options.scales.y.stacked = true;
       chart.update();
     }
   },
   {
-    name: 'Stacked: false (default)',
-    handler: (chart) => {
+    name: "Stacked: false (default)",
+    handler: chart => {
       chart.options.scales.y.stacked = false;
       chart.update();
     }
   },
   {
-    name: 'Stacked Single',
-    handler: (chart) => {
-      chart.options.scales.y.stacked = 'single';
+    name: "Stacked Single",
+    handler: chart => {
+      chart.options.scales.y.stacked = "single";
       chart.update();
     }
   },
   {
-    name: 'Randomize',
+    name: "Randomize",
     handler(chart) {
       chart.data.datasets.forEach(dataset => {
-        dataset.data = Utils.numbers({count: chart.data.labels.length, min: -100, max: 100});
+        dataset.data = Utils.numbers({
+          count: chart.data.labels.length,
+          min: -100,
+          max: 100
+        });
       });
       chart.update();
     }
   },
   {
-    name: 'Add Dataset',
+    name: "Add Dataset",
     handler(chart) {
       const data = chart.data;
       const dsColor = Utils.namedColor(chart.data.datasets.length);
       const newDataset = {
-        label: 'Dataset ' + (data.datasets.length + 1),
+        label: "Dataset " + (data.datasets.length + 1),
         backgroundColor: dsColor,
         borderColor: dsColor,
         fill: true,
-        data: Utils.numbers({count: data.labels.length, min: -100, max: 100}),
+        data: Utils.numbers({ count: data.labels.length, min: -100, max: 100 })
       };
       chart.data.datasets.push(newDataset);
       chart.update();
     }
   },
   {
-    name: 'Add Data',
+    name: "Add Data",
     handler(chart) {
       const data = chart.data;
       if (data.datasets.length > 0) {
-        data.labels = Utils.months({count: data.labels.length + 1});
+        data.labels = Utils.months({ count: data.labels.length + 1 });
 
-        for (var index = 0; index < data.datasets.length; ++index) {
+        for (let index = 0; index < data.datasets.length; ++index) {
           data.datasets[index].data.push(Utils.rand(-100, 100));
         }
 
@@ -65,14 +69,14 @@ const actions = [
     }
   },
   {
-    name: 'Remove Dataset',
+    name: "Remove Dataset",
     handler(chart) {
       chart.data.datasets.pop();
       chart.update();
     }
   },
   {
-    name: 'Remove Data',
+    name: "Remove Data",
     handler(chart) {
       chart.data.labels.splice(-1, 1); // remove the label first
 
@@ -88,35 +92,35 @@ const actions = [
 
 // <block:setup:1>
 const DATA_COUNT = 7;
-const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
+const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
 
-const labels = Utils.months({count: 7});
+const labels = Utils.months({ count: 7 });
 const data = {
   labels: labels,
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.red,
       backgroundColor: Utils.CHART_COLORS.red,
       fill: true
     },
     {
-      label: 'My Second dataset',
+      label: "My Second dataset",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.blue,
       backgroundColor: Utils.CHART_COLORS.blue,
       fill: true
     },
     {
-      label: 'My Third dataset',
+      label: "My Third dataset",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.green,
       backgroundColor: Utils.CHART_COLORS.green,
       fill: true
     },
     {
-      label: 'My Fourth dataset',
+      label: "My Fourth dataset",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.yellow,
       backgroundColor: Utils.CHART_COLORS.yellow,
@@ -128,36 +132,37 @@ const data = {
 
 // <block:config:0>
 const config = {
-  type: 'line',
+  type: "line",
   data: data,
   options: {
     responsive: true,
     plugins: {
       title: {
         display: true,
-        text: (ctx) => 'Chart.js Line Chart - stacked=' + ctx.chart.options.scales.y.stacked
+        text: ctx =>
+          "Chart.js Line Chart - stacked=" + ctx.chart.options.scales.y.stacked
       },
       tooltip: {
-        mode: 'index'
-      },
+        mode: "index"
+      }
     },
     interaction: {
-      mode: 'nearest',
-      axis: 'x',
+      mode: "nearest",
+      axis: "x",
       intersect: false
     },
     scales: {
       x: {
         title: {
           display: true,
-          text: 'Month'
+          text: "Month"
         }
       },
       y: {
         stacked: true,
         title: {
           display: true,
-          text: 'Value'
+          text: "Value"
         }
       }
     }
